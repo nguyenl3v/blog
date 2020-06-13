@@ -8,7 +8,12 @@ require("dotenv").config();
 const app = express();
 
 mongoose
-  .connect(process.env.db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("mongoose connected"))
   .catch((err) => console.log(err));
 
@@ -19,7 +24,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use('/publish', express.static('publish/upload'));
+app.use("/publish", express.static("publish/upload"));
 
 const register = require("./router/register");
 const login = require("./router/login");

@@ -20,6 +20,7 @@ router.post("/api/upload",auth,upload.any(),uploadFile.upload);
 router.post("/api/create/post",auth,Post.create);
 router.get("/api/getbyid/:id",auth,Post.getOne);
 router.get("/api/getbyuser/:id",auth,Post.getByUser);
+router.put("/api/post/update/:id/:userId",auth,Post.update);
 router.delete("/api/deletePost/:id",auth,Post.deletePostId);
 
 module.exports = router;

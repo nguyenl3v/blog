@@ -12,22 +12,6 @@ const video = new mongoose.Schema({
     type: String,
     required: true,
   },
-  like: {
-    type: Boolean,
-    default: false,
-  },
-  dislike: {
-    type: Boolean,
-    default: false,
-  },
-  likeCount: {
-    type: Number,
-    default: 0,
-  },
-  dislikeCount: {
-    type: Number,
-    default: 0,
-  },
   view: {
     type: Number,
     default: 0,
@@ -36,10 +20,22 @@ const video = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  userId: {
+  likeCount: {
+    type:Number,
+    default: 0,
+  },
+  dislikeCount: {
+    type:Number,
+    default: 0,
+  },
+  catePost: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "categoryPost",
+  }],
+  userId:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
-  },
+  }
 });
 
 module.exports = mongoose.model("video", video);
